@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+}
+
+input#standard-basic {
+  color: white;
+}
+
+label#standard-basic-label {
+  color: white;
+}
+
+.my-image {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.add-photo-button {
+  padding-left: 20px;
+  color: white;
+}
+
+.display-name {
+  text-align: center;
+  margin: 7px;
+  color: white;
+}
+
+.photo-and-add-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+div.input-field {
+  text-align: center;
+}
+
+.body {
+  background-color: #274e8c;
+}
+
+form.app-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.cancel-button {
+  padding-right: 10px;
+}
+
+.save-button {
+  padding-right: 10px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
