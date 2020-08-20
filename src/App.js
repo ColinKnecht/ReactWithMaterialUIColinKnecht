@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Layout from './Components/Layouts/Layout';
 import Header from './Components/Layouts/Header';
 import Body from './Components/Layouts/Body';
 import Footer from './Components/Layouts/Footer';
@@ -23,9 +24,10 @@ class App extends Component {
     // this.getRequestData();
     return (
       <div className="App">
-        <Header user={this.state.user} />
+        <Layout />
+        {/* <Header user={this.state.user} />
         <Body user={this.state.user} />
-        <Footer user={this.state.user} />
+        <Footer user={this.state.user} /> */}
       </div>
     );
 

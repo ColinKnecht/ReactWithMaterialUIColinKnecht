@@ -29,27 +29,31 @@ function Body(props) {
                         </IconButton> 
                     </div>
                 </div> 
-            <h1 className="display-name">{props.user.name}</h1>
+            <h1 className="display-name">Dummy Name</h1>
             </div>
             <form className="app-form" noValidate autoComplete="off">
                 <div className="input-field">
-                    <TextField id="standard-basic" label="Name" value={props.user.name} />
+                    {/* <TextField id="standard-basic" label="Name" value={props.user.name} /> */}
+                    <TextField id="standard-basic" label="Name"/>
                 </div>
                 <div className="input-field">
-                    <TextField id="standard-basic" label="Phone" value={props.user.phone} />
+                    {/* <TextField id="standard-basic" label="Phone" value={props.user.phone} /> */}
+                    <TextField id="standard-basic" label="Phone" />
                 </div>
                 <div className="input-field">
-                    <TextField id="standard-basic" label="Email" value={props.user.email} />
+                    {/* <TextField id="standard-basic" label="Email" value={props.user.email} /> */}
+                    <TextField id="standard-basic" label="Email" />
                 </div>
                 <div className="input-field">
                     <TextField id="standard-basic" label="Password" value="****" />
                 </div>
                 <div className="input-field">
-                    <TextField id="standard-basic" label="Pin" value={props.user.pin} />
+                    {/* <TextField id="standard-basic" label="Pin" value={props.user.pin} /> */}
+                    <TextField id="standard-basic" label="Pin" />
                 </div>
                 <div className="input-field">
                     <Switch
-                        checked={props.user.pairing}
+                        //checked={props.user.pairing}
                         onChange={pairingChanged}
                         color="primary"
                         name="checkedB"
