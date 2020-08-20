@@ -24,7 +24,8 @@ class Layout extends Component {
     render () {
         return (
             <Auxiliary>
-                <Header />
+                <Header open={this.state.showSideDrawer} 
+                        closed={this.sideDrawerClosedHandler}/>
                 <SideDrawer 
                     open={this.state.showSideDrawer} 
                     closed={this.sideDrawerClosedHandler} />
