@@ -1,89 +1,106 @@
-import React from 'react'
+import React, { Component } from 'react'
 import IconButton from '@material-ui/core/IconButton';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import TextField from '@material-ui/core/TextField';
 import Switch from '@material-ui/core/Switch';
+import axios from '../../axios-orders';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-function Body(props) {
-    function logState(e) {
-        e.preventDefault();
-        // console.log(props);
+class Body extends Component {
+    state = {
+        user: {
+            email: null,
+            id: null,
+            ip_address: null,
+            name: null,
+            pairing: null,
+            phone: null,
+            pin: null,
+            post_data: null,
+            timestamp: null
+        },
+        error: false
     }
 
-    function pairingChanged(e) {
+    componentWillMount() {
+        console.log(this.props);
+        axios.get('http://projects.codeandtrust.com/api/user/99')
+            .then(response => {
+                this.setState({user: response.data});
+                console.log(response.data[0]);
+            })
+            .catch(error => {
+                this.setState({error: true});
+                console.log('error on componentDidMount');
+            });
+    }
+
+    pairingChanged() {
         // console.log(e);
-        props.user.pairing = !props.user.pairing;
+        this.props.user.pairing = !this.props.user.pairing;
+        // this.setState({this.state.user[0].pairing: this.state.user[0].pairing});
         // console.log(props);
     }
 
-    return (
-        <div className="body">
-            <div className="pic-and-name">
-                <div className="photo-and-add-photo">
-                    <img className="my-image" src="https://www.placecage.com/150/150"></img>
-                    <div className="add-photo-button">
-                        <IconButton onClick={logState} edge="start" className="menuButton" color="inherit" aria-label="menu">
-                            <AddAPhotoIcon />
-                        </IconButton> 
-                    </div>
-                </div> 
-            <h1 className="display-name">Dummy Name</h1>
-            </div>
-            <form className="app-form" noValidate autoComplete="off">
-                <div className="input-field">
-                    {/* <TextField id="standard-basic" label="Name" value={props.user.name} /> */}
-                    <TextField id="standard-basic" label="Name"/>
-                </div>
-                <div className="input-field">
-                    {/* <TextField id="standard-basic" label="Phone" value={props.user.phone} /> */}
-                    <TextField id="standard-basic" label="Phone" />
-                </div>
-                <div className="input-field">
-                    {/* <TextField id="standard-basic" label="Email" value={props.user.email} /> */}
-                    <TextField id="standard-basic" label="Email" />
-                </div>
-                <div className="input-field">
-                    <TextField id="standard-basic" label="Password" value="****" />
-                </div>
-                <div className="input-field">
-                    {/* <TextField id="standard-basic" label="Pin" value={props.user.pin} /> */}
-                    <TextField id="standard-basic" label="Pin" />
-                </div>
-                <div className="input-field">
-                    <Switch
-                        //checked={props.user.pairing}
-                        onChange={pairingChanged}
-                        color="primary"
-                        name="checkedB"
-                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                        />
-                </div>
- 
-                {/* <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                <Input
-                    id="standard-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                /> */}
-            </form>
+    render() {
+        let userName = '';
+        let phone = '';
+        let email = '';
+        let pin = '';
+        let pairing = false;
 
-  
-        </div>
-    );
+        if (this.state.user[0]) {
+            console.log(this.state.user[0].name);
+            userName = this.state.user[0].name;
+            phone = this.state.user[0].phone;
+            email = this.state.user[0].email;
+            pin = this.state.user[0].pin;
+            pairing = this.state.user[0].pairing === 0 ? false : true ;
+        } 
+        
+        return (
+            <div className="body">
+                <div className="pic-and-name">
+                    <div className="photo-and-add-photo">
+                        <img className="my-image" src="https://www.placecage.com/150/150"></img>
+                        <div className="add-photo-button">
+                            <IconButton edge="start" className="menuButton" color="inherit" aria-label="menu">
+                                <AddAPhotoIcon />
+                            </IconButton> 
+                        </div>
+                    </div> 
+                <h1 className="display-name">{userName}</h1>
+                </div>
+                <form className="app-form" noValidate autoComplete="off">
+                    <div className="input-field">
+                        <TextField id="standard-basic" label="Name" value={userName} />
+                    </div>
+                    <div className="input-field">
+                        <TextField id="standard-basic" label="Phone" value={phone} />
+                    </div>
+                    <div className="input-field">
+                        <TextField id="standard-basic" label="Email" value={email} />
+                    </div>
+                    <div className="input-field">
+                        <TextField id="standard-basic" label="Password" value="****" />
+                    </div>
+                    <div className="input-field">
+                        <TextField id="standard-basic" label="Pin" value={pin} />
+                    </div>
+                    <div className="input-field">
+                        <Switch
+                            checked={pairing}
+                            onChange={this.pairingChanged}
+                            color="primary"
+                            name="checkedB"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                            />
+                    </div>        
+                </form>
+            </div>
+        );
+    }
 }
 
 export default Body;
