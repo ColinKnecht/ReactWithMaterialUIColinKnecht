@@ -11,6 +11,7 @@ class Header extends Component {
   menuButtonClicked(e) {
     e.preventDefault();
     console.log('Menu Button was clicked');
+    // <DrawerToggle clicked={this.props.drawerToggleClicked} />
   }
 
   threeDotsClicked(e) {
@@ -21,6 +22,7 @@ class Header extends Component {
   render () {
     return (
       <div className="header">
+
         <AppBar position="static">
           <Toolbar>
             <div className="hamburger">
@@ -28,7 +30,7 @@ class Header extends Component {
                 <MenuIcon />
               </IconButton>
             </div>
-            {/* <DrawerToggle clicked={this.props.drawerToggleClicked} /> */}
+
             <div className="three-dots">
               <IconButton edge="end" onClick={this.threeDotsClicked} className="menuButton" color="inherit" aria-label="menu">
                 <MoreVertIcon />
@@ -39,7 +41,7 @@ class Header extends Component {
       </div>
     );
   }
- 
+
   }
-  
+
   export default Header;
